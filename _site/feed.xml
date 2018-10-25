@@ -1,4 +1,314 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2018-10-26T00:06:32+08:00</updated><id>http://localhost:4000/</id><title type="html">Zcy</title><subtitle>听说你想看我</subtitle><author><name>true</name></author><entry><title type="html">Hive配置安装</title><link href="http://localhost:4000/2018/05/17/%E5%AE%89%E8%A3%85hive.html" rel="alternate" type="text/html" title="Hive配置安装" /><published>2018-05-17T22:05:21+08:00</published><updated>2018-05-17T22:05:21+08:00</updated><id>http://localhost:4000/2018/05/17/%E5%AE%89%E8%A3%85hive</id><content type="html" xml:base="http://localhost:4000/2018/05/17/%E5%AE%89%E8%A3%85hive.html">&lt;h3 id=&quot;1-安装mysql&quot;&gt;1. 安装Mysql&lt;/h3&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2018-10-26T00:25:13+08:00</updated><id>http://localhost:4000/</id><title type="html">Zcy</title><subtitle>听说你想看我</subtitle><author><name>true</name></author><entry><title type="html">Hadoop集群配置</title><link href="http://localhost:4000/2018/10/24/Hadoop%E9%9B%86%E7%BE%A4%E9%85%8D%E7%BD%AE.html" rel="alternate" type="text/html" title="Hadoop集群配置" /><published>2018-10-24T16:44:13+08:00</published><updated>2018-10-24T16:44:13+08:00</updated><id>http://localhost:4000/2018/10/24/Hadoop%E9%9B%86%E7%BE%A4%E9%85%8D%E7%BD%AE</id><content type="html" xml:base="http://localhost:4000/2018/10/24/Hadoop%E9%9B%86%E7%BE%A4%E9%85%8D%E7%BD%AE.html">&lt;h4 id=&quot;1多台机器ssh免密配置&quot;&gt;1.多台机器ssh免密配置&lt;/h4&gt;
+
+&lt;h5 id=&quot;修改用户名&quot;&gt;修改用户名&lt;/h5&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;# 1.更改hostname
+hostnamectl --static set-hostname &amp;lt;主机名&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h5 id=&quot;scp传输文件&quot;&gt;scp传输文件&lt;/h5&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;scp &amp;lt;文件路径&amp;gt; &amp;lt;目标账号@地址&amp;gt;: 目标路径 
+scp /etc/hosts root@hadoop2: /etc/
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h5 id=&quot;ssh免密登录&quot;&gt;ssh免密登录&lt;/h5&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;# 配置公钥
+ssh-keygen 
+# 配置免密登录
+ssh-copy-id &amp;lt;目标ip&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;2-多台主机时间核对&quot;&gt;2. 多台主机时间核对&lt;/h4&gt;
+&lt;h5 id=&quot;所有机器安装ntp&quot;&gt;所有机器安装ntp&lt;/h5&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;yum -y install ntp
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;h5 id=&quot;修改主机配置文件&quot;&gt;修改主机配置文件&lt;/h5&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;1. 备份配置文件
+cp /etc/ntp.conf /etc/ntp.conf.bak
+2. 修改主机配置文件
+vim /etc/ntp.conf 
+# server 0.centos.pool.ntp.org iburst
+# server 1.centos.pool.ntp.org iburst
+# server 2.centos.pool.ntp.org iburst
+# server 3.centos.pool.ntp.org iburst
+service 127.127.1.1 #核对时间的一个IP
+3.重启ntpd进程，设置开机自启
+systemctl restart ntpd
+systemctl enable ntpd
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;配置其他主机
+```&lt;/li&gt;
+  &lt;li&gt;校对其他主机时间
+ntpdate hadoop1 #与主机校对时间
+systemctl start ntpd #启动服务
+crontab  # 配置定是脚本&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;2.修改其他主机配置文件
+vim /etc/ntp.conf&lt;/p&gt;
+&lt;h1 id=&quot;server-0centospoolntporg-iburst&quot;&gt;server 0.centos.pool.ntp.org iburst&lt;/h1&gt;
+&lt;h1 id=&quot;server-1centospoolntporg-iburst&quot;&gt;server 1.centos.pool.ntp.org iburst&lt;/h1&gt;
+&lt;h1 id=&quot;server-2centospoolntporg-iburst&quot;&gt;server 2.centos.pool.ntp.org iburst&lt;/h1&gt;
+&lt;h1 id=&quot;server-3centospoolntporg-iburst&quot;&gt;server 3.centos.pool.ntp.org iburst&lt;/h1&gt;
+&lt;p&gt;server 192.168.121.10 #主主机IP&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;在其他主机上设置开机自启&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;systemctl restart ntpd
+systemctl enable ntpd&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+#### 3. Hdfs 环境变量配置
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;h1 id=&quot;配置jdk-cdh中spark会默认到usrjavadefault目录下去找jdk所以一般就安装在usrjava目录下&quot;&gt;配置JDK CDH中spark会默认到/usr/java/default目录下去找jdk，所以一般就安装在/usr/java目录下&lt;/h1&gt;
+&lt;p&gt;vim etc/hadoop/hadoop-env.sh
+export JAVA_HOME=/usr/java/latest&lt;/p&gt;
+
+&lt;h1 id=&quot;配置文件etchadoopcore-sitexml&quot;&gt;配置文件etc/hadoop/core-site.xml&lt;/h1&gt;
+&lt;p&gt;vim etc/hadoop/core-site.xml&lt;/p&gt;
+&lt;configuration&gt;
+ &lt;property&gt;
+  &lt;name&gt;fs.defaultFS&lt;/name&gt;
+  &lt;value&gt;hdfs://hadoop1:9000&lt;/value&gt;
+ &lt;/property&gt;
+ &lt;property&gt;
+  &lt;name&gt;hadoop.tmp.dir&lt;/name&gt;
+  &lt;value&gt;/usr/local/hadoop-2.6.0/data/tmp&lt;/value&gt;
+ &lt;/property&gt;
+&lt;/configuration&gt;
+
+&lt;h1 id=&quot;配置文件vim-etchadoophdfs-sitexml&quot;&gt;配置文件vim etc/hadoop/hdfs-site.xml&lt;/h1&gt;
+&lt;configuration&gt;
+ &lt;property&gt;
+  &lt;name&gt;dfs.replication&lt;/name&gt;
+  &lt;value&gt;1&lt;/value&gt;
+ &lt;/property&gt;
+&lt;/configuration&gt;
+&lt;h1 id=&quot;python操作hdfs时需要获取权限&quot;&gt;python操作hdfs时需要获取权限&lt;/h1&gt;
+&lt;property&gt; 
+	&lt;name&gt;dfs.permissions&lt;/name&gt; 
+&lt;value&gt;false&lt;/value&gt; 
+## 指定secondarynamenode节点
+&lt;property&gt;
+	&lt;name&gt;dfs.namenode.secondary.http-address&lt;/name&gt;
+	&lt;value&gt;节点地址:50090&lt;/value&gt;
+&lt;/property&gt;
+# 配置下Hadoop的环境变量（略
+
+# NameNode格式化  
+hdfs namenode -format
+
+# hdfs 的web监控端口50070
+# 服务启动
+hadoop-daemon.sh start namenode
+hadoop-daemon.sh start datanode
+
+# 创建文件夹
+hdfs dfs -mkdir /test
+# 上传文件
+hdfs dfs -put /etc/profile /file
+```
+
+#### 4. 配置Yarn
+```
+# 配置文件etc/hadoop/mapred-site.xml
+vim etc/hadoop/mapred-site.xml
+&lt;configuration&gt;
+ &lt;property&gt;
+  &lt;name&gt;mapreduce.framework.name&lt;/name&gt;
+  &lt;value&gt;yarn&lt;/value&gt;
+ &lt;/property&gt;
+&lt;/configuration&gt;
+
+# 配置文件etc/hadoop/yarn-site.xml
+&lt;property&gt;
+ &lt;name&gt;yarn.nodemanager.aux-services&lt;/name&gt;
+ &lt;value&gt;mapreduce_shuffle&lt;/value&gt;
+&lt;/property&gt;
+&lt;property&gt;
+ &lt;name&gt;yarn.resourcemanager.hostname&lt;/name&gt;
+ &lt;value&gt;hadoop1&lt;/value&gt;
+&lt;/property&gt;
+
+# slaves设置
+vim etc/hadoop/slaves
+本机ip
+
+# 启动yarn
+sh start-yarn.sh
+
+#启动后的Web端口为8088
+```
+
+#### 5. 配置ZooKeeper
+1. 上传文件（zookeeper.tar.gz
+2. 解压至指定文件夹
+3. 创建data/zkData文件夹
+4. 修改配置文件
+```
+    cd conf
+    cp zoo_sample.cfg  zoo.cfg
+    vim zoo.cfg
+    # 修改文件目录
+    datadir=/usr/local/zookeeper/data/zkData
+    # 配置各节点以及端口信息(选举节点：通信节点)
+    server.1=hadoop1:2888:3888
+    server.2=hadoop2:2888:3888
+    server.3=hadoop3:2888:3888
+```
+5. 将zookeeper整个文件夹发送到其他节点
+6. 在data/zkData文件夹下，创建myid
+  - myid里面指定当前节点的id
+  - 即hadoop1 里面的内容为1
+  - hadoop2里面的内容为2
+
+7. 修改环境部变量（选
+8. 开启服务
+```
+# 开启服务
+bin/zkServer.sh start
+# 查看角色分配以及当前状态
+bin/zkServer.sh status
+# 进入虚拟文件系统的shell
+bin/zkCli.sh
+```
+
+#### 6. 配置Hadoop-HA
+
+##### hdfs-site.xml配置
+```
+vim etc/hadoop/hdfs-site.xml
+&lt;configuration&gt;
+ &lt;property&gt;
+ # 对整个文件系统的一个统称
+  &lt;name&gt;dfs.nameservices&lt;/name&gt;
+  &lt;value&gt;ns1&lt;/value&gt;
+ &lt;/property&gt;
+ &lt;property&gt;
+ # 指定这个文件系统的namenode有哪些
+  &lt;name&gt;dfs.ha.namenodes.ns1&lt;/name&gt;
+  &lt;value&gt;nn1,nn2&lt;/value&gt;
+ &lt;/property&gt;
+ &lt;property&gt;
+ # 指定nn1是哪个
+  &lt;name&gt;dfs.namenode.rpc-address.ns1.nn1&lt;/name&gt;
+  &lt;value&gt;hadoop1:8020&lt;/value&gt;
+ &lt;/property&gt;
+ &lt;property&gt;
+ # 指定nn2 是哪个
+  &lt;name&gt;dfs.namenode.rpc-address.ns1.nn2&lt;/name&gt;
+  &lt;value&gt;hadoop2:8020&lt;/value&gt;
+ &lt;/property&gt;
+ &lt;property&gt;
+ # 指定nn1 的访问端口
+  &lt;name&gt;dfs.namenode.http-address.ns1.nn1&lt;/name&gt;
+  &lt;value&gt;hadoop1:50070&lt;/value&gt;
+ &lt;/property&gt;
+ &lt;property&gt;
+ # 指定nn2的访问端口
+  &lt;name&gt;dfs.namenode.http-address.ns1.nn2&lt;/name&gt;
+  &lt;value&gt;hadoop2:50070&lt;/value&gt;
+ &lt;/property&gt;
+ &lt;property&gt;
+ # 共享在journalnode上的共享端口
+  &lt;name&gt;dfs.namenode.shared.edits.dir&lt;/name&gt;
+  &lt;value&gt;qjournal://hadoop1:8485;hadoop2:8485;hadoop3:8485/ns1&lt;/value&gt;
+ &lt;/property&gt;
+ &lt;property&gt;
+ # 配置eidts在journalnode上的保存地址
+  &lt;name&gt;dfs.journalnode.eidts.dir&lt;/name&gt;
+  &lt;value&gt;/usr/local/hadoop-2.6.0/data/dfs/jn&lt;/value&gt;
+ &lt;/property&gt;
+ &lt;property&gt;
+ # 配置proxy代理客户端
+  &lt;name&gt;dfs.client.failover.proxy.provide.nsl&lt;/name&gt;
+  &lt;value&gt;org.apache.hadoop.hdfs.server.namenode.ha.ConfiguredFailoverProxyProvider&lt;/value&gt;
+ &lt;/property&gt;
+
+```
+
+##### 配置core-site.xml
+```
+# 配置两个namennode的隔离策略
+# sshfence方式
+# 使用这种方式，必须实现ssh无密码登录
+
+vim etc/hadoop/core-site.xml
+
+&lt;configuration&gt;
+ &lt;property&gt;
+  &lt;name&gt;dfs.ha.fencing.methods&lt;/name&gt;
+  &lt;value&gt;sshfence&lt;/value&gt;
+ &lt;/property&gt;
+ &lt;property&gt;
+  &lt;name&gt;dfs.ha.fencing.ssh.private-key-files&lt;/name&gt;
+  &lt;value&gt;/root/.ssh/id_rsa&lt;/value&gt;
+ &lt;/property&gt;
+ &lt;property&gt;
+  &lt;name&gt;fs.defaultFS&lt;/name&gt;
+  &lt;value&gt;hdfs://ns1&lt;/value&gt;
+ &lt;/property&gt;
+ &lt;property&gt;
+  &lt;name&gt;hadoop.tmp.dir&lt;/name&gt;
+  &lt;value&gt;/usr/local/hadoop-2.6.0/data/tmp&lt;/value&gt;
+ &lt;/property&gt;
+&lt;/configuration&gt;
+
+```
+##### 启动集群
+- 关闭所有其他相关的进程
+- 启动所有的journalnode
+  - hadoop-daemon.sh start journalnode
+- nn1 格式化并启动
+  - hdfs namenode -formate
+  - hadoop-daemon.sh start namenode
+- 在nn2上同步nn1的元数据信息
+  - hdfs namenode -bootstrapStandby
+- 启动nn2
+  -hadoop-daemon.sh start namenode
+- 启动所有datanode
+  - hadoop-daemon.sh start datanode
+- 调整一个nameno为active
+  - hdfs haadmin -help (查看相关命令)
+  - hdfs haadmin -transitionToActive nn1(将nn1调整为active)
+
+
+##### 借助zookeeper，配置自动故障转移
+
+1. 启动时都是standby，选取一个为active
+2. 监控 ZKFC（它负责整体的故障转移控制
+
+配置
+```
+# 打开自动故障转移
+# hdfs-site.xml:
+&lt;property&gt;
+	&lt;name&gt;dfs.ha.automatic-failover.enabled&lt;/name&gt;
+	&lt;value&gt;true&lt;/value&gt;
+&lt;/property&gt;
+
+# core-site.xml:
+# 添加zookeeper的服务
+&lt;property&gt;
+	&lt;name&gt;ha.zookeeper.quorum&lt;/name&gt;
+	&lt;value&gt;hadoop1:2181,hadoop2:2181,hadoop3:2181&lt;/value&gt;
+&lt;/property&gt;
+```
+
+##### 启动
+1. 保证所有节点文件相同，关闭所有hdfs服务
+2. 启动zookeeper集群
+   - zkServer.sh start
+3. 初始化HA在zookeeper中的状态
+   - hdfs zkfc -formatZK -force
+4. 启动hdfs服务
+   - start-hdfs.sh
+   - 如果直接一起启动出现通信错误，造成namenode停止，则需要先启动journalnode，再启动其他
+5. namenode节点启动zkfc服务
+   - hadoop-daemon.sh start zkfc
+&lt;/configuration&gt;&lt;/property&gt;</content><author><name>true</name></author><category term="hadoop" /><summary type="html">1.多台机器ssh免密配置</summary></entry><entry><title type="html">Hive配置安装</title><link href="http://localhost:4000/2018/05/17/%E5%AE%89%E8%A3%85hive.html" rel="alternate" type="text/html" title="Hive配置安装" /><published>2018-05-17T22:05:21+08:00</published><updated>2018-05-17T22:05:21+08:00</updated><id>http://localhost:4000/2018/05/17/%E5%AE%89%E8%A3%85hive</id><content type="html" xml:base="http://localhost:4000/2018/05/17/%E5%AE%89%E8%A3%85hive.html">&lt;h3 id=&quot;1-安装mysql&quot;&gt;1. 安装Mysql&lt;/h3&gt;
 
 &lt;ol&gt;
   &lt;li&gt;
