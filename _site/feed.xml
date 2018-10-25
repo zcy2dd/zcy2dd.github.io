@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2018-10-25T16:35:48+08:00</updated><id>http://localhost:4000/</id><title type="html">Zcy</title><subtitle>听说你想看我</subtitle><author><name>true</name></author><entry><title type="html">Hive配置安装</title><link href="http://localhost:4000/2018/05/17/%E5%AE%89%E8%A3%85hive.html" rel="alternate" type="text/html" title="Hive配置安装" /><published>2018-05-17T14:05:21+08:00</published><updated>2018-05-17T14:05:21+08:00</updated><id>http://localhost:4000/2018/05/17/%E5%AE%89%E8%A3%85hive</id><content type="html" xml:base="http://localhost:4000/2018/05/17/%E5%AE%89%E8%A3%85hive.html">&lt;h3 id=&quot;1-安装mysql&quot;&gt;1. 安装Mysql&lt;/h3&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;在集群中选择一台节点进行安装mysql&lt;/p&gt;
+
+    &lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;yum &lt;span class=&quot;nt&quot;&gt;-y&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;install  &lt;/span&gt;mariadb-server   mariadb
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;开启服务并配置开机自启&lt;/p&gt;
+
+    &lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;systemctl start mariadb.service
+systemctl &lt;span class=&quot;nb&quot;&gt;enable &lt;/span&gt;mariadb.service
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;设置密码，第一次登录时密码为空，之后设置使用sql语句设置密码&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code class=&quot;language-mysql&quot;&gt;mysql -u root -p
+# 登录之后，先查看databases是否正常，之后sql语句设置密码
+&amp;gt; use mysql;
+&amp;gt; update user set password=password( '123456' ) where user= 'root' ;
+# 然后设置root用户可以从任何主机登陆，对任何的库和表都有访问权限
+&amp;gt; grant all privileges on *.* to root@'%' identified by '123456';
+&amp;gt; grant all privileges on *.* to root@'hadoop1' identified by '123456';
+&amp;gt; grant all privileges on *.* to root@'localhost' identified by '123456';
+&amp;gt; FLUSH PRIVILEGES;
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;修改mariadb的数据地址，只是集群节点中必要的设置&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code class=&quot;language-mysql&quot;&gt;# 1.停止服务
+    systemctl stop mariadb.service
+# 2.复制原来的配置到系统盘外的磁盘(举例是/data01)
+    cp -r /var/lib/mysql/ /data01/
+# 3.备份原来的设置
+    mv /var/lib/mysql/ /var/lib/mysql.bak/
+# 4.修改磁盘中文件夹的所属权限
+    chown -R mysql:mysql /data01/mysql
+# 5.创建软连接
+    ln -s /data01/mysql/ /var/lib/mysql
+# 6.重启Mariadb
+    systemctl restart mariadb 
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;所有节点安装mysql-connector驱动&lt;/p&gt;
+
+    &lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;yum &lt;span class=&quot;nt&quot;&gt;-y&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;mysql-connector-java
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+
+    &lt;blockquote&gt;
+      &lt;p&gt;安装之后的路径为/usr/share/java/mysql-connector-java.jar&lt;/p&gt;
+    &lt;/blockquote&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;安装其他依赖包&lt;/p&gt;
+
+    &lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;yum &lt;span class=&quot;nt&quot;&gt;-y&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;psmisc             
+yum &lt;span class=&quot;nt&quot;&gt;-y&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;perl               
+yum &lt;span class=&quot;nt&quot;&gt;-y&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;install  &lt;/span&gt;nfs-utils  portmap
+systemctl start rpcbind           
+systemctl &lt;span class=&quot;nb&quot;&gt;enable &lt;/span&gt;rpcbind          
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;创建数据库和用户&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code class=&quot;language-mysql&quot;&gt;create database hive DEFAULT CHARSET utf8 COLLATE utf8_general_ci;
+create database amon DEFAULT CHARSET utf8 COLLATE utf8_general_ci;
+create database hue DEFAULT CHARSET utf8 COLLATE utf8_general_ci;
+create database monitor DEFAULT CHARSET utf8 COLLATE utf8_general_ci;
+create database oozie DEFAULT CHARSET utf8 COLLATE utf8_general_ci;
+CREATE USER 'hive'@'localhost' IDENTIFIED BY 'hive'; 
+GRANT ALL PRIVILEGES ON hive.* TO 'hive'@'localhost'; 
+CREATE USER 'hive'@'%' IDENTIFIED BY 'hive'; 
+GRANT ALL PRIVILEGES ON hive.* TO 'hive'@'%'; 
+CREATE USER 'hive'@'hadoop1'IDENTIFIED BY 'hive';  
+GRANT ALL PRIVILEGES ON hive.* TO 'hive'@'hadoop1';
+   
+CREATE USER 'oozie'@'localhost' IDENTIFIED BY 'oozie'; 
+GRANT ALL PRIVILEGES ON oozie.* TO 'oozie'@'localhost';  
+CREATE USER 'oozie'@'%' IDENTIFIED BY 'oozie'; 
+GRANT ALL PRIVILEGES ON oozie.* TO 'oozie'@'%'; 
+CREATE USER 'oozie'@'hadoop1'IDENTIFIED BY 'oozie';  
+GRANT ALL PRIVILEGES ON oozie.* TO 'oozie'@'hadoop1'; 
+   
+CREATE USER 'monitor'@'localhost' IDENTIFIED BY 'monitor'; 
+GRANT ALL PRIVILEGES ON monitor.* TO 'monitor'@'localhost';  
+CREATE USER 'monitor'@'%' IDENTIFIED BY 'monitor'; 
+GRANT ALL PRIVILEGES ON monitor.* TO 'monitor'@'%'; 
+CREATE USER 'monitor'@'hadoop1'IDENTIFIED BY 'monitor';  
+GRANT ALL PRIVILEGES ON monitor.* TO 'monitor'@'hadoop1'; 
+FLUSH PRIVILEGES;  
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;2-hive的配置&quot;&gt;2. Hive的配置&lt;/h3&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;hive只需要在一节点安装（服务端）即可&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;根据对应hadoop版本下载软件包&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;上传并解压到节点&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;配置环境变量&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;修改配置文件&lt;/p&gt;
+
+    &lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; ../hive/conf
+&lt;span class=&quot;c&quot;&gt;# 去掉后面的模板后缀&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# 1.hive-env.sh中添加信息:    &lt;/span&gt;
+	&lt;span class=&quot;nb&quot;&gt;export &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;JAVA_HOME&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;...
+	&lt;span class=&quot;nb&quot;&gt;export &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;HADOOP_HOME&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;.&lt;/span&gt;
+	&lt;span class=&quot;nb&quot;&gt;export &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;HIVE_HOME&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;...
+&lt;span class=&quot;c&quot;&gt;# 2.hive-log4j.properties 修改&lt;/span&gt;
+	log4j.appender.EventCounter&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;org.apache.hadoop.log.metrics.EventCounter
+&lt;span class=&quot;c&quot;&gt;# 3.hive-site.xml：&lt;/span&gt;
+			&amp;lt;configuration&amp;gt;
+				&amp;lt;property&amp;gt;
+					&amp;lt;name&amp;gt;javax.jdo.option.ConnectionURL&amp;lt;/name&amp;gt;
+					&amp;lt;value&amp;gt;jdbc:mysql://hadoop1:3306/hive?createDatabaseIfNotExist&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;true&lt;/span&gt;&amp;lt;/value&amp;gt;
+				&amp;lt;/property&amp;gt;
+				&amp;lt;property&amp;gt;
+					&amp;lt;name&amp;gt;javax.jdo.option.ConnectionDriverName&amp;lt;/name&amp;gt;
+					&amp;lt;value&amp;gt;com.mysql.jdbc.Driver&amp;lt;/value&amp;gt;
+				&amp;lt;/property&amp;gt;
+				&amp;lt;property&amp;gt;
+					&amp;lt;name&amp;gt;javax.jdo.option.ConnectionUserName&amp;lt;/name&amp;gt;
+					&amp;lt;value&amp;gt;root&amp;lt;/value&amp;gt;
+				&amp;lt;/property&amp;gt;
+				&amp;lt;property&amp;gt;
+					&amp;lt;name&amp;gt;javax.jdo.option.ConnectionPassword&amp;lt;/name&amp;gt;
+					&amp;lt;value&amp;gt;123456&amp;lt;/value&amp;gt;
+				&amp;lt;/property&amp;gt;
+			&amp;lt;/configuration&amp;gt;
+&lt;span class=&quot;c&quot;&gt;# 5.把hive/lib下的jline2.12拷贝到hadoop下的share/hadoop/yarn/lib/下，若存在旧版本就替换掉&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# 6.把mysql-connector这个jar包，拷贝到hive下的lib下&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;3-启动hive&quot;&gt;3. 启动Hive&lt;/h3&gt;
+
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;hive
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>true</name></author><category term="hadoop" /><category term="hive" /><summary type="html">1. 安装Mysql</summary></entry><entry><title type="html">Welcome to Jekyll!</title><link href="http://localhost:4000/2018/05/17/welcome-to-jekyll.html" rel="alternate" type="text/html" title="Welcome to Jekyll!" /><published>2018-05-17T14:05:21+08:00</published><updated>2018-05-17T14:05:21+08:00</updated><id>http://localhost:4000/2018/05/17/welcome-to-jekyll</id><content type="html" xml:base="http://localhost:4000/2018/05/17/welcome-to-jekyll.html">&lt;p&gt;You’ll find this post in your &lt;code class=&quot;highlighter-rouge&quot;&gt;_posts&lt;/code&gt; directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run &lt;code class=&quot;highlighter-rouge&quot;&gt;jekyll serve&lt;/code&gt;, which launches a web server and auto-regenerates your site when a file is updated.&lt;/p&gt;
+
+&lt;p&gt;To add new posts, simply add a file in the &lt;code class=&quot;highlighter-rouge&quot;&gt;_posts&lt;/code&gt; directory that follows the convention &lt;code class=&quot;highlighter-rouge&quot;&gt;YYYY-MM-DD-name-of-post.ext&lt;/code&gt; and includes the necessary front matter. Take a look at the source for this post to get an idea about how it works.&lt;/p&gt;
+
+&lt;p&gt;Jekyll also offers powerful support for code snippets:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;print_hi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Hi, &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;print_hi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'Tom'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;#=&amp;gt; prints 'Hi, Tom' to STDOUT.&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Check out the &lt;a href=&quot;https://jekyllrb.com/docs/home&quot;&gt;Jekyll docs&lt;/a&gt; for more info on how to get the most out of Jekyll. File all bugs/feature requests at &lt;a href=&quot;https://github.com/jekyll/jekyll&quot;&gt;Jekyll’s GitHub repo&lt;/a&gt;. If you have questions, you can ask them on &lt;a href=&quot;https://talk.jekyllrb.com/&quot;&gt;Jekyll Talk&lt;/a&gt;.&lt;/p&gt;</content><author><name>true</name></author><category term="jekyll" /><category term="update" /><summary type="html">You’ll find this post in your _posts directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run jekyll serve, which launches a web server and auto-regenerates your site when a file is updated.</summary></entry><entry><title type="html">Hello Jekyll</title><link href="http://localhost:4000/2017/04/18/hello-jekyll.html" rel="alternate" type="text/html" title="Hello Jekyll" /><published>2017-04-18T00:00:00+08:00</published><updated>2017-04-18T00:00:00+08:00</updated><id>http://localhost:4000/2017/04/18/hello-jekyll</id><content type="html" xml:base="http://localhost:4000/2017/04/18/hello-jekyll.html">&lt;blockquote&gt;
+  &lt;p&gt;Transform your plain text into static websites and blogs.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h1 id=&quot;welcome&quot;&gt;Welcome&lt;/h1&gt;
+
+&lt;h2 id=&quot;welcome-1&quot;&gt;Welcome&lt;/h2&gt;
+
+&lt;h3 id=&quot;welcome-2&quot;&gt;Welcome&lt;/h3&gt;
+
+&lt;p&gt;This site aims to be a comprehensive guide to Jekyll. We’ll cover topics such as getting your site up and running, creating and managing your content, customizing the way your site works and looks, deploying to various environments, and give you some advice on participating in the future development of Jekyll itself.&lt;/p&gt;
+
+&lt;h3 id=&quot;so-what-is-jekyll-exactlypermalink&quot;&gt;So what is Jekyll, exactly?Permalink&lt;/h3&gt;
+
+&lt;p&gt;Jekyll is a simple, blog-aware, static site generator. It takes a template directory containing raw text files in various formats, runs it through a converter (like &lt;a href=&quot;https://daringfireball.net/projects/markdown/&quot;&gt;Markdown&lt;/a&gt;) and our &lt;a href=&quot;https://github.com/Shopify/liquid/wiki&quot;&gt;Liquid&lt;/a&gt; renderer, and spits out a complete, ready-to-publish static website suitable for serving with your favorite web server. Jekyll also happens to be the engine behind GitHub Pages, which means you can use Jekyll to host your project’s page, blog, or website from GitHub’s servers for free.&lt;/p&gt;
+
+&lt;h3 id=&quot;helpful-hintspermalink&quot;&gt;Helpful HintsPermalink&lt;/h3&gt;
+
+&lt;p&gt;Throughout this guide there are a number of small-but-handy pieces of information that can make using Jekyll easier, more interesting, and less hazardous. Here’s what to look out for.&lt;/p&gt;
+
+&lt;h3 id=&quot;video-test&quot;&gt;Video Test&lt;/h3&gt;
+
+&lt;iframe type=&quot;text/html&quot; width=&quot;100%&quot; height=&quot;385&quot; src=&quot;http://www.youtube.com/embed/gfmjMWjn-Xg&quot; frameborder=&quot;0&quot;&gt;&lt;/iframe&gt;</content><author><name>Jekyll</name></author><category term="jekyll" /><summary type="html">Transform your plain text into static websites and blogs.</summary></entry></feed>

@@ -1,0 +1,431 @@
+<!-- 博文的布局-Layout -->
+<!DOCTYPE html>
+<html>
+<head>
+<!-- 引入head标签 -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-sclable=0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="description" content="听说你想看我" />
+<meta name="keywords" content="大数据, 程序猿" />
+<link rel="stylesheet" href="/assets/css/style.css">
+<link rel="stylesheet" href="/assets/css/media.css">
+<link rel="stylesheet" href="/assets/css/animate.min.css">
+<link rel="stylesheet" href="/assets/css/pygments/pygments_default.css">
+<link rel="stylesheet" href="/assets/css/github-markdown.css">
+<!-- SNS-icon -->
+<script src="//at.alicdn.com/t/font_856428_y9z6nq7zf5.js"></script>
+<!-- share.css -->
+<link rel="stylesheet" href="/assets/css/share.min.css">
+<!-- font -->
+<link rel="stylesheet" href="/assets/css/font.css">
+<!-- <link href="https://fonts.googleapis.com/css?family=Kaushan+Script|Pacifico|Ubuntu|Roboto+Mono|Source+Sans+Pro" rel="stylesheet"> -->
+
+<!-- Favicon -->
+<link href="/assets/profile.jpeg" rel="shortcut icon" />
+<link href="/assets/profile.jpeg" rel="apple-touch-icon-precomposed" />
+<!-- Android Lolipop Theme Color -->
+<!-- <meta name="theme-color" content="#1464FB"> -->
+<title>Hive配置安装</title>
+<!-- 百度统计 -->
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+<!-- 谷歌分析 -->
+
+
+<!-- Android Lolipop Theme Color -->
+<meta name="theme-color" content=" rgb(255,90,90) ">
+</head>
+<body>
+
+<!-- 顶部锚点 -->
+<a id="htmlup" name="htmlup"></a>
+<!-- 引入博文顶部选项 -->
+
+<header id="post-header" style="background-color:rgb(255,90,90);">
+  <div class="top-center">
+      <div class="logo">
+          <a href="/" title="my awesome webtitle" style="color: white;">your awesome webtitle</a>
+      </div>
+      <nav class="top-nav">
+          <ul>
+              
+                <li><a href="/" style="color: white;">首页</a></li>
+              
+                <li><a href="/tags.html" style="color: white;">标签</a></li>
+              
+                <li><a href="/timeline.html" style="color: white;">时间线</a></li>
+              
+                <li><a href="/about.html" style="color: white;">关于博主</a></li>
+              
+                <li><a href="/friendLink.html" style="color: white;">友情链接</a></li>
+              
+          </ul>
+      </nav>
+      <div id="top-boot">
+        <a href="javascript:;" id="boot1" style="display:block;" onclick="document.getElementById('boot-area').style.display='block';document.getElementById('boot1').style.display='none';document.getElementById('boot2').style.display='block';"><img src="/assets/boot_white.png" alt=""></a>
+        <a href="javascript:;" id="boot2" style="display: none;" onclick="document.getElementById('boot-area').style.display='none';document.getElementById('boot1').style.display='block';document.getElementById('boot2').style.display='none';"><img src="/assets/boot_white.png" alt=""></a>
+      </div>
+  </div>
+
+</header>
+
+
+<!-- 引入移动下拉选项 -->
+<div id="boot-area">
+    <ul>
+        
+          <a href="/"><li>首页</li></a>
+        
+          <a href="/tags.html"><li>标签</li></a>
+        
+          <a href="/timeline.html"><li>时间线</li></a>
+        
+          <a href="/about.html"><li>关于博主</li></a>
+        
+          <a href="/friendLink.html"><li>友情链接</li></a>
+        
+    </ul>
+</div>
+
+<!-- 引入博文顶部样式 -->
+<!-- 版本一 垃圾 -->
+<!-- <div class="wow fadeIn top" data-wow-duration="3.5s" >
+    <span class="wow fadeInUp" data-wow-delay="0.2s">Hive配置安装</span>
+    <span class="wow fadeInUp" data-wow-delay="0.4s"></span>
+    <span class="wow fadeInUp" data-wow-delay="0.4s"></span>
+    <span class="wow fadeInUp" data-wow-delay="0.6s">作者&nbsp;&nbsp;|&nbsp;&nbsp;true</span>
+</div> -->
+
+<!-- 版本二 可切换页面 -->
+
+<div class="post-top" style="background-color:rgb(255,90,90);">
+  <!-- 页面宽度大于800px -->
+  <div class="left-area">
+    
+      <a href="javascript:;" class="btn bounceInLeft animated" onmouseover="showLeft();this.style.color='rgb(255,90,90)';" onmouseout="goneLeft();this.style.color='rgba(0,0,0,.2)';"><</a>
+      <div id="left-tab" style="display:none;"><span class="left-san"></span><span class="left-main" style="color:rgb(255,90,90);"><sapn class="main">没有上一页咯</sapn></span></div>
+    
+  </div>
+  <div class="post-titlearea">
+    <span class="wow fadeInUp" data-wow-delay="0.2s">Hive配置安装</span>
+    <!-- <span class="wow fadeInUp" data-wow-delay="0.4s"></span> -->
+    <!-- <span class="wow fadeInUp" data-wow-delay="0.4s"></span> -->
+    <!-- <span class="wow fadeInUp" data-wow-delay="0.6s">作者&nbsp;&nbsp;|&nbsp;&nbsp;true</span> -->
+  </div>
+  <div class="right-area">
+    
+      <a href="/2018/05/17/welcome-to-jekyll.html" class="btn bounceInRight self-animated" onmouseover="showRight();this.style.color='rgb(255,90,90)';" onmouseout="goneRight();this.style.color='rgba(0,0,0,.2)';">></a>
+      <div id="right-tab" style="display:none;"><span class="right-san"></span><span class="right-main" style="color:rgb(255,90,90);"><sapn class="main">Welcome to Jekyll!</sapn></span></div>
+    
+  </div>
+
+  <!-- 页面宽度小于800px -->
+  <div class="post-changearea">
+    
+      <a href="javascript:;" class="leftchange" style="border-right: 1px solid rgb(255,90,90);border-bottom: 2px solid rgb(255,90,90);"><span><br>没有上一篇咯</span></a>
+    
+    
+      <a href="/2018/05/17/welcome-to-jekyll.html" class="rightchange" style="border-left: 1px solid rgb(255,90,90);border-bottom: 2px solid rgb(255,90,90);"><span>下一篇<br><br>Welcome to Jekyll!</span></a>
+    
+  </div>
+</div>
+
+
+<div class="markdown-body fadeInUp animated">
+
+  
+    
+      <div class="postpage-subtitle" style="border-left: 8px solid rgb(255,90,90); border-right: 8px solid rgb(255,90,90)">
+        Welcome to Jekyll!
+      </div>
+    
+  
+
+  <!-- 文章内容 -->
+  <h3 id="1-安装mysql">1. 安装Mysql</h3>
+
+<ol>
+  <li>
+    <p>在集群中选择一台节点进行安装mysql</p>
+
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>yum <span class="nt">-y</span> <span class="nb">install  </span>mariadb-server   mariadb
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>开启服务并配置开机自启</p>
+
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>systemctl start mariadb.service
+systemctl <span class="nb">enable </span>mariadb.service
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>设置密码，第一次登录时密码为空，之后设置使用sql语句设置密码</p>
+
+    <pre><code class="language-mysql">mysql -u root -p
+# 登录之后，先查看databases是否正常，之后sql语句设置密码
+&gt; use mysql;
+&gt; update user set password=password( '123456' ) where user= 'root' ;
+# 然后设置root用户可以从任何主机登陆，对任何的库和表都有访问权限
+&gt; grant all privileges on *.* to root@'%' identified by '123456';
+&gt; grant all privileges on *.* to root@'hadoop1' identified by '123456';
+&gt; grant all privileges on *.* to root@'localhost' identified by '123456';
+&gt; FLUSH PRIVILEGES;
+</code></pre>
+  </li>
+  <li>
+    <p>修改mariadb的数据地址，只是集群节点中必要的设置</p>
+
+    <pre><code class="language-mysql"># 1.停止服务
+    systemctl stop mariadb.service
+# 2.复制原来的配置到系统盘外的磁盘(举例是/data01)
+    cp -r /var/lib/mysql/ /data01/
+# 3.备份原来的设置
+    mv /var/lib/mysql/ /var/lib/mysql.bak/
+# 4.修改磁盘中文件夹的所属权限
+    chown -R mysql:mysql /data01/mysql
+# 5.创建软连接
+    ln -s /data01/mysql/ /var/lib/mysql
+# 6.重启Mariadb
+    systemctl restart mariadb 
+</code></pre>
+  </li>
+  <li>
+    <p>所有节点安装mysql-connector驱动</p>
+
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>yum <span class="nt">-y</span> <span class="nb">install </span>mysql-connector-java
+</code></pre></div>    </div>
+
+    <blockquote>
+      <p>安装之后的路径为/usr/share/java/mysql-connector-java.jar</p>
+    </blockquote>
+  </li>
+  <li>
+    <p>安装其他依赖包</p>
+
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>yum <span class="nt">-y</span> <span class="nb">install </span>psmisc             
+yum <span class="nt">-y</span> <span class="nb">install </span>perl               
+yum <span class="nt">-y</span> <span class="nb">install  </span>nfs-utils  portmap
+systemctl start rpcbind           
+systemctl <span class="nb">enable </span>rpcbind          
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>创建数据库和用户</p>
+
+    <pre><code class="language-mysql">create database hive DEFAULT CHARSET utf8 COLLATE utf8_general_ci;
+create database amon DEFAULT CHARSET utf8 COLLATE utf8_general_ci;
+create database hue DEFAULT CHARSET utf8 COLLATE utf8_general_ci;
+create database monitor DEFAULT CHARSET utf8 COLLATE utf8_general_ci;
+create database oozie DEFAULT CHARSET utf8 COLLATE utf8_general_ci;
+CREATE USER 'hive'@'localhost' IDENTIFIED BY 'hive'; 
+GRANT ALL PRIVILEGES ON hive.* TO 'hive'@'localhost'; 
+CREATE USER 'hive'@'%' IDENTIFIED BY 'hive'; 
+GRANT ALL PRIVILEGES ON hive.* TO 'hive'@'%'; 
+CREATE USER 'hive'@'hadoop1'IDENTIFIED BY 'hive';  
+GRANT ALL PRIVILEGES ON hive.* TO 'hive'@'hadoop1';
+   
+CREATE USER 'oozie'@'localhost' IDENTIFIED BY 'oozie'; 
+GRANT ALL PRIVILEGES ON oozie.* TO 'oozie'@'localhost';  
+CREATE USER 'oozie'@'%' IDENTIFIED BY 'oozie'; 
+GRANT ALL PRIVILEGES ON oozie.* TO 'oozie'@'%'; 
+CREATE USER 'oozie'@'hadoop1'IDENTIFIED BY 'oozie';  
+GRANT ALL PRIVILEGES ON oozie.* TO 'oozie'@'hadoop1'; 
+   
+CREATE USER 'monitor'@'localhost' IDENTIFIED BY 'monitor'; 
+GRANT ALL PRIVILEGES ON monitor.* TO 'monitor'@'localhost';  
+CREATE USER 'monitor'@'%' IDENTIFIED BY 'monitor'; 
+GRANT ALL PRIVILEGES ON monitor.* TO 'monitor'@'%'; 
+CREATE USER 'monitor'@'hadoop1'IDENTIFIED BY 'monitor';  
+GRANT ALL PRIVILEGES ON monitor.* TO 'monitor'@'hadoop1'; 
+FLUSH PRIVILEGES;  
+</code></pre>
+  </li>
+</ol>
+
+<h3 id="2-hive的配置">2. Hive的配置</h3>
+
+<blockquote>
+  <p>hive只需要在一节点安装（服务端）即可</p>
+</blockquote>
+
+<ol>
+  <li>
+    <p>根据对应hadoop版本下载软件包</p>
+  </li>
+  <li>
+    <p>上传并解压到节点</p>
+  </li>
+  <li>
+    <p>配置环境变量</p>
+  </li>
+  <li>
+    <p>修改配置文件</p>
+
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd</span> ../hive/conf
+<span class="c"># 去掉后面的模板后缀</span>
+<span class="c"># 1.hive-env.sh中添加信息:    </span>
+	<span class="nb">export </span><span class="nv">JAVA_HOME</span><span class="o">=</span>...
+	<span class="nb">export </span><span class="nv">HADOOP_HOME</span><span class="o">=</span><span class="nb">.</span>
+	<span class="nb">export </span><span class="nv">HIVE_HOME</span><span class="o">=</span>...
+<span class="c"># 2.hive-log4j.properties 修改</span>
+	log4j.appender.EventCounter<span class="o">=</span>org.apache.hadoop.log.metrics.EventCounter
+<span class="c"># 3.hive-site.xml：</span>
+			&lt;configuration&gt;
+				&lt;property&gt;
+					&lt;name&gt;javax.jdo.option.ConnectionURL&lt;/name&gt;
+					&lt;value&gt;jdbc:mysql://hadoop1:3306/hive?createDatabaseIfNotExist<span class="o">=</span><span class="nb">true</span>&lt;/value&gt;
+				&lt;/property&gt;
+				&lt;property&gt;
+					&lt;name&gt;javax.jdo.option.ConnectionDriverName&lt;/name&gt;
+					&lt;value&gt;com.mysql.jdbc.Driver&lt;/value&gt;
+				&lt;/property&gt;
+				&lt;property&gt;
+					&lt;name&gt;javax.jdo.option.ConnectionUserName&lt;/name&gt;
+					&lt;value&gt;root&lt;/value&gt;
+				&lt;/property&gt;
+				&lt;property&gt;
+					&lt;name&gt;javax.jdo.option.ConnectionPassword&lt;/name&gt;
+					&lt;value&gt;123456&lt;/value&gt;
+				&lt;/property&gt;
+			&lt;/configuration&gt;
+<span class="c"># 5.把hive/lib下的jline2.12拷贝到hadoop下的share/hadoop/yarn/lib/下，若存在旧版本就替换掉</span>
+<span class="c"># 6.把mysql-connector这个jar包，拷贝到hive下的lib下</span>
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<h3 id="3-启动hive">3. 启动Hive</h3>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>hive
+</code></pre></div></div>
+
+  <!-- 引入share模块 -->
+  
+  <div class="social-share-wrapper">
+    <div class="social-share"></div>
+  </div>
+
+
+<!-- share.js -->
+<script src="/assets/js/social-share.min.js"></script>
+<script>
+  socialShare('.social-share', {
+    sites: [
+      
+        'qq'
+        ,
+        
+      
+        'wechat'
+        ,
+        
+      
+        'weibo'
+        ,
+        
+      
+        'twitter'
+        ,
+        
+      
+        'facebook'
+        
+      
+    ],
+    wechatQrcodeTitle: "分享到微信朋友圈",
+    wechatQrcodeHelper: '期待在朋友圈见到这篇文章'
+  });
+</script>
+
+</div>
+
+<!-- 底部锚点 -->
+<a id="htmldown" name="htmldown"></a>
+<!-- 引入评论模块 -->
+
+
+
+    <section class="post-footer-item comment">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zNDI2OS8xMDgwNg=="></div>
+    </section>
+
+    <!-- 来必力City版安装代码 -->
+    <script type="text/javascript">
+       (function(d, s) {
+           var j, e = d.getElementsByTagName(s)[0];
+
+           if (typeof LivereTower === 'function') { return; }
+
+           j = d.createElement(s);
+           j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+           j.async = true;
+
+           e.parentNode.insertBefore(j, e);
+       })(document, 'script');
+    </script>
+    <noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+    <!-- City版安装代码已完成 -->
+
+
+
+
+
+<!-- 引入goto模块 -->
+<div class="bounceInRight animated go">
+  <a title="顶部切换页面" class="gototop" href="#htmlup" target="_self">
+    <div class="box" style="font-family:'ffad_matroregular';">
+        Top
+    </div>
+  </a>
+  <a title="底部有livere评论哦" class="gotobottom" href="#htmldown" target="_self">
+    <div class="box" style="font-family:'ffad_matroregular';">
+        Foot
+    </div>
+  </a>
+</div>
+
+<!-- 引入页面底部模块 -->
+<footer id="bottom">
+  <br>
+  <span>Zcy ©
+  
+  
+  2018
+  <br>
+  Powered by <a href="https://www.jekyll.com.cn/">Jekyll</a> | <a href="https://github.com/xukimseven/HardCandy-Jekyll">HardCandy-Jekyll</a></span>
+</footer>
+
+
+<!-- 引用wow.js的动画效果 -->
+<script src="/assets/js/wow.js"></script>
+<script>
+    var wow = new WOW({
+        boxClass: 'wow',
+        animateClass: 'animated',
+        // offset: 600,
+        mobile: true,
+        live: true
+    });
+    wow.init();
+</script>
+<!-- 页面刷新回到顶部 -->
+<script>
+    window.onbeforeunload = function(){
+        //刷新后页面自动回到顶部
+        document.documentElement.scrollTop = 0;  //ie下
+        document.body.scrollTop = 0;  //非ie
+    }
+</script>
+<script src="/assets/js/main.js"></script>
+</body>
+</html>
