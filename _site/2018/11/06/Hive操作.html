@@ -1,0 +1,392 @@
+<!-- 博文的布局-Layout -->
+<!DOCTYPE html>
+<html>
+<head>
+<!-- 引入head标签 -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-sclable=0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="description" content="听说你想看我" />
+<meta name="keywords" content="大数据, 程序猿" />
+<link rel="stylesheet" href="/assets/css/style.css">
+<link rel="stylesheet" href="/assets/css/media.css">
+<link rel="stylesheet" href="/assets/css/animate.min.css">
+<link rel="stylesheet" href="/assets/css/pygments/pygments_default.css">
+<link rel="stylesheet" href="/assets/css/github-markdown.css">
+<!-- SNS-icon -->
+<script src="//at.alicdn.com/t/font_856428_y9z6nq7zf5.js"></script>
+<!-- share.css -->
+<link rel="stylesheet" href="/assets/css/share.min.css">
+<!-- font -->
+<link rel="stylesheet" href="/assets/css/font.css">
+<!-- <link href="https://fonts.googleapis.com/css?family=Kaushan+Script|Pacifico|Ubuntu|Roboto+Mono|Source+Sans+Pro" rel="stylesheet"> -->
+
+<!-- Favicon -->
+<link href="/assets/profile.jpeg" rel="shortcut icon" />
+<link href="/assets/profile.jpeg" rel="apple-touch-icon-precomposed" />
+<!-- Android Lolipop Theme Color -->
+<!-- <meta name="theme-color" content="#1464FB"> -->
+<title>Hive操作</title>
+<!-- 百度统计 -->
+
+<!-- 谷歌分析 -->
+
+
+<!-- Android Lolipop Theme Color -->
+<meta name="theme-color" content=" rgb(255,228,225) ">
+</head>
+<body>
+
+<!-- 顶部锚点 -->
+<a id="htmlup" name="htmlup"></a>
+<!-- 引入博文顶部选项 -->
+
+<header id="post-header" style="background-color:rgb(255,228,225);">
+  <div class="top-center">
+      <div class="logo">
+          <a href="/" title="my awesome webtitle" style="color: white;">ZcyOooooop</a>
+      </div>
+      <nav class="top-nav">
+          <ul>
+              
+                <li><a href="/" style="color: white;">首页</a></li>
+              
+                <li><a href="/tags.html" style="color: white;">标签</a></li>
+              
+                <li><a href="/timeline.html" style="color: white;">时间线</a></li>
+              
+                <li><a href="/about.html" style="color: white;">关于</a></li>
+              
+                <li><a href="/friendLink.html" style="color: white;">友情链接</a></li>
+              
+          </ul>
+      </nav>
+      <div id="top-boot">
+        <a href="javascript:;" id="boot1" style="display:block;" onclick="document.getElementById('boot-area').style.display='block';document.getElementById('boot1').style.display='none';document.getElementById('boot2').style.display='block';"><img src="/assets/boot_white.png" alt=""></a>
+        <a href="javascript:;" id="boot2" style="display: none;" onclick="document.getElementById('boot-area').style.display='none';document.getElementById('boot1').style.display='block';document.getElementById('boot2').style.display='none';"><img src="/assets/boot_white.png" alt=""></a>
+      </div>
+  </div>
+
+</header>
+
+
+<!-- 引入移动下拉选项 -->
+<div id="boot-area">
+    <ul>
+        
+          <a href="/"><li>首页</li></a>
+        
+          <a href="/tags.html"><li>标签</li></a>
+        
+          <a href="/timeline.html"><li>时间线</li></a>
+        
+          <a href="/about.html"><li>关于</li></a>
+        
+          <a href="/friendLink.html"><li>友情链接</li></a>
+        
+    </ul>
+</div>
+
+<!-- 引入博文顶部样式 -->
+<!-- 版本一 垃圾 -->
+<!-- <div class="wow fadeIn top" data-wow-duration="3.5s" >
+    <span class="wow fadeInUp" data-wow-delay="0.2s">Hive操作</span>
+    <span class="wow fadeInUp" data-wow-delay="0.4s"></span>
+    <span class="wow fadeInUp" data-wow-delay="0.4s"></span>
+    <span class="wow fadeInUp" data-wow-delay="0.6s">作者&nbsp;&nbsp;|&nbsp;&nbsp;true</span>
+</div> -->
+
+<!-- 版本二 可切换页面 -->
+
+<div class="post-top" style="background-color:rgb(255,228,225);">
+  <!-- 页面宽度大于800px -->
+  <div class="left-area">
+    
+      <a href="javascript:;" class="btn bounceInLeft animated" onmouseover="showLeft();this.style.color='rgb(255,228,225)';" onmouseout="goneLeft();this.style.color='rgba(0,0,0,.2)';"><</a>
+      <div id="left-tab" style="display:none;"><span class="left-san"></span><span class="left-main" style="color:rgb(255,228,225);"><sapn class="main">没有上一页咯</sapn></span></div>
+    
+  </div>
+  <div class="post-titlearea">
+    <span class="wow fadeInUp" data-wow-delay="0.2s">Hive操作</span>
+    <!-- <span class="wow fadeInUp" data-wow-delay="0.4s"></span> -->
+    <!-- <span class="wow fadeInUp" data-wow-delay="0.4s"></span> -->
+    <!-- <span class="wow fadeInUp" data-wow-delay="0.6s">作者&nbsp;&nbsp;|&nbsp;&nbsp;true</span> -->
+  </div>
+  <div class="right-area">
+    
+      <a href="/2018/10/26/%E5%AE%89%E8%A3%85hive.html" class="btn bounceInRight self-animated" onmouseover="showRight();this.style.color='rgb(255,228,225)';" onmouseout="goneRight();this.style.color='rgba(0,0,0,.2)';">></a>
+      <div id="right-tab" style="display:none;"><span class="right-san"></span><span class="right-main" style="color:rgb(255,228,225);"><sapn class="main">Hive配置安装</sapn></span></div>
+    
+  </div>
+
+  <!-- 页面宽度小于800px -->
+  <div class="post-changearea">
+    
+      <a href="javascript:;" class="leftchange" style="border-right: 1px solid rgb(255,228,225);border-bottom: 2px solid rgb(255,228,225);"><span><br>没有上一篇咯</span></a>
+    
+    
+      <a href="/2018/10/26/%E5%AE%89%E8%A3%85hive.html" class="rightchange" style="border-left: 1px solid rgb(255,228,225);border-bottom: 2px solid rgb(255,228,225);"><span>下一篇<br><br>Hive配置安装</span></a>
+    
+  </div>
+</div>
+
+
+<div class="markdown-body fadeInUp animated">
+
+  
+    
+      <div class="postpage-subtitle" style="border-left: 8px solid rgb(255,228,225); border-right: 8px solid rgb(255,228,225)">
+        hive的常用操作，不是很全的那种
+      </div>
+    
+  
+
+  <!-- 文章内容 -->
+  <h4 id="创建数据库">创建数据库</h4>
+
+<pre><code class="language-mysql">cearte database [if not exists] db.hive;
+</code></pre>
+
+<h4 id="表的相关操作">表的相关操作</h4>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">-- 创建表</span>
+<span class="k">create</span> <span class="k">table</span> <span class="p">[</span><span class="n">if</span> <span class="k">not</span> <span class="k">exists</span><span class="p">]</span> <span class="n">student</span><span class="p">(</span>
+    <span class="n">name</span> <span class="n">string</span><span class="p">,</span>
+    <span class="n">age</span> <span class="n">int</span><span class="p">,</span>
+    <span class="n">score</span> <span class="n">int</span><span class="p">)</span>
+<span class="k">row</span> <span class="n">format</span> <span class="n">delimited</span> <span class="n">fileds</span> <span class="n">terminated</span> <span class="k">by</span> <span class="s1">'</span><span class="se">\t</span><span class="s1">'</span><span class="p">;</span>
+
+<span class="c1">-- 创建子表——从表中提取出所需要的字段</span>
+<span class="k">create</span> <span class="k">table</span> <span class="n">if</span> <span class="k">not</span> <span class="k">exists</span> <span class="n">db_hive</span><span class="p">.</span><span class="n">emp_cats</span>
+<span class="k">as</span>
+<span class="k">select</span> <span class="n">name</span><span class="p">,</span> <span class="n">age</span><span class="p">,</span> <span class="k">from</span> <span class="n">student</span><span class="p">;</span>
+
+<span class="c1">-- 清除表数据，但不删除表</span>
+<span class="k">truncate</span> <span class="k">table</span> <span class="n">dept_cats</span><span class="p">;</span>
+
+<span class="c1">-- 建立表结构相同的表</span>
+<span class="k">create</span> <span class="k">table</span> <span class="n">if</span> <span class="k">not</span> <span class="k">exists</span> <span class="n">student_like</span>
+<span class="k">like</span>
+<span class="n">test</span><span class="p">.</span><span class="n">student</span><span class="p">;</span>
+
+<span class="c1">-- 修改表的名称</span>
+<span class="k">alter</span> <span class="k">table</span> <span class="n">dept_like</span> <span class="k">rename</span> <span class="k">to</span> <span class="n">dept_like_rename</span><span class="p">;</span>
+
+<span class="c1">-- 删除表（好像会卡住</span>
+<span class="k">drop</span> <span class="k">table</span> <span class="n">if</span> <span class="k">exists</span> <span class="n">dept_like_rename</span><span class="p">;</span>
+
+<span class="c1">-- 创建外部表</span>
+<span class="c1">-- 外部表在删除时不会删掉内置的数据</span>
+<span class="k">create</span> <span class="k">external</span> <span class="k">table</span> <span class="n">if</span> <span class="k">not</span> <span class="k">exists</span> <span class="n">db_hive</span><span class="p">.</span><span class="n">emp_external</span><span class="p">(</span>
+<span class="n">empno</span> <span class="n">int</span><span class="p">,</span>
+<span class="n">ename</span> <span class="n">string</span><span class="p">,</span>
+<span class="n">job</span> <span class="n">string</span><span class="p">,</span>
+<span class="n">mgr</span> <span class="n">int</span><span class="p">,</span>
+<span class="n">hiredate</span> <span class="n">string</span><span class="p">,</span>
+<span class="n">sal</span> <span class="n">double</span><span class="p">,</span>
+<span class="n">comm</span> <span class="n">double</span><span class="p">,</span>
+<span class="n">deptno</span> <span class="n">int</span>
+<span class="p">)</span>
+<span class="k">row</span> <span class="n">format</span> <span class="n">delimited</span> <span class="n">fields</span> <span class="n">terminated</span> <span class="k">by</span> <span class="s1">'</span><span class="se">\t</span><span class="s1">'</span>
+<span class="k">location</span> <span class="s1">'/user/root/hive/warehouse/emp_external'</span><span class="p">;</span>
+
+<span class="c1">-- 建立二分区表</span>
+<span class="k">set</span> <span class="n">hive</span><span class="p">.</span><span class="k">exec</span><span class="p">.</span><span class="k">dynamic</span><span class="p">.</span><span class="n">partition</span><span class="p">.</span><span class="k">mode</span><span class="o">=</span><span class="n">nonstrict</span><span class="p">;</span> <span class="o">#</span> <span class="err">允许动态分区</span>
+<span class="c1">-- 静态分区 </span>
+<span class="k">create</span> <span class="k">external</span> <span class="k">table</span> <span class="n">if</span> <span class="k">not</span> <span class="k">exists</span> <span class="n">db_hive</span><span class="p">.</span><span class="n">emp_partition2</span><span class="p">(</span>
+<span class="n">empno</span> <span class="n">int</span><span class="p">,</span>
+<span class="n">ename</span> <span class="n">string</span><span class="p">,</span>
+<span class="n">job</span> <span class="n">string</span><span class="p">,</span>
+<span class="n">mgr</span> <span class="n">int</span><span class="p">,</span>
+<span class="n">hiredate</span> <span class="n">string</span><span class="p">,</span>
+<span class="n">sal</span> <span class="n">double</span><span class="p">,</span>
+<span class="n">comm</span> <span class="n">double</span><span class="p">,</span>
+<span class="n">deptno</span> <span class="n">int</span>
+<span class="p">)</span>
+<span class="n">PARTITIONED</span> <span class="k">BY</span> <span class="p">(</span><span class="k">month</span> <span class="n">string</span><span class="p">,</span> <span class="k">day</span> <span class="n">string</span><span class="p">)</span>
+<span class="k">row</span> <span class="n">format</span> <span class="n">delimited</span> <span class="n">fields</span> <span class="n">terminated</span> <span class="k">by</span> <span class="s1">'</span><span class="se">\t</span><span class="s1">'</span>
+<span class="k">location</span> <span class="s1">'/user/root/hive/warehouse/emp_external'</span><span class="p">;</span>
+
+<span class="k">load</span> <span class="k">data</span> <span class="k">local</span> <span class="n">inpath</span> <span class="s1">'/root/data_emp/emp.txt'</span> <span class="k">into</span> <span class="k">table</span> <span class="n">db_hive</span><span class="p">.</span><span class="n">emp_partition2</span>
+<span class="n">partition</span> <span class="p">(</span><span class="k">month</span><span class="o">=</span><span class="s1">'201810'</span><span class="p">,</span> <span class="k">day</span><span class="o">=</span><span class="s1">'21'</span><span class="p">);</span>
+
+<span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">emp_partition2</span> <span class="k">where</span> <span class="k">month</span><span class="o">=</span><span class="s1">'201810'</span> <span class="k">and</span> <span class="k">day</span><span class="o">=</span><span class="s1">'21'</span><span class="p">;</span>
+<span class="c1">-- 动态分区(分区的字段必须在后面)</span>
+<span class="k">FROM</span> <span class="n">raw_access_log</span> 
+<span class="k">INSERT</span> <span class="n">OVERWRITE</span> <span class="k">TABLE</span>
+<span class="n">partitioned_raw_access_log</span>
+<span class="n">PARTITION</span><span class="p">(</span><span class="k">year</span><span class="p">,</span><span class="k">month</span><span class="p">,</span><span class="k">day</span><span class="p">)</span>
+<span class="k">SELECT</span> <span class="n">ip</span><span class="p">.....</span><span class="k">year</span><span class="p">,</span><span class="k">month</span><span class="p">,</span><span class="k">day</span>
+<span class="c1">-- 混合模式</span>
+<span class="k">FROM</span> <span class="n">raw_access_log</span> 
+<span class="k">INSERT</span> <span class="n">OVERWRITE</span> <span class="k">TABLE</span>
+<span class="n">partitioned_raw_access_log</span>
+<span class="n">PARTITION</span><span class="p">(</span><span class="k">year</span><span class="o">=</span><span class="nv">"2007"</span><span class="p">,</span><span class="k">month</span><span class="p">,</span><span class="k">day</span><span class="p">)</span>
+<span class="k">SELECT</span> <span class="n">ip</span><span class="p">.....</span><span class="k">month</span><span class="p">,</span><span class="k">day</span>
+
+<span class="c1">-- 分桶模式</span>
+<span class="k">FROM</span> <span class="n">table_test</span>
+<span class="n">CLUSTERED</span> <span class="k">BY</span> <span class="p">(</span><span class="k">column_name</span><span class="p">,...)</span> <span class="k">INTO</span> <span class="mi">8</span> <span class="n">BUCKETS</span><span class="o">//</span><span class="err">与分区不同的是列名必须是已经存在的列名</span>
+
+<span class="c1">-- 将数据导入分桶表</span>
+<span class="c1">-- 首先设置reduce数量和Buckets数量一直，即最终决定产生多少个文件</span>
+<span class="c1">-- hive.enforce.sorting和hive.enforce.bucketing设置为true，免了dirtribute by &amp; sort by</span>
+<span class="k">SET</span> <span class="n">hive</span><span class="p">.</span><span class="n">enforce</span><span class="p">.</span><span class="n">bucketing</span><span class="o">=</span><span class="k">true</span><span class="p">;</span>
+<span class="k">SET</span> <span class="n">mapred</span><span class="p">.</span><span class="n">reduce</span><span class="p">.</span><span class="n">tasks</span><span class="o">=</span><span class="mi">200</span><span class="p">;</span>
+<span class="k">FROM</span> <span class="n">table_fa</span>
+<span class="k">INSERT</span> <span class="n">OVERWRITE</span> <span class="k">TABLE</span> <span class="n">table_son</span>
+<span class="k">SELECT</span> <span class="p">...,</span><span class="n">request_date</span>
+<span class="k">WHERE</span> <span class="p">...</span>
+<span class="p">[</span><span class="n">DISTRIBUTE</span> <span class="k">BY</span> <span class="p">...][</span><span class="n">SORT</span> <span class="k">BY</span> <span class="p">...]</span>
+
+</code></pre></div></div>
+<h4 id="四个by不是蛮懂">四个by（不是蛮懂</h4>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">-- order by 全局排序，仅仅只有一个reducer</span>
+	<span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">emp</span> <span class="k">order</span> <span class="k">by</span> <span class="n">empno</span> <span class="k">desc</span><span class="p">;</span>
+<span class="c1">-- sort by 对每一个reduce内部进行排序，全局结果集不是排序的</span>
+	<span class="k">set</span> <span class="n">mapreduce</span><span class="p">.</span><span class="n">job</span><span class="p">.</span><span class="n">reduces</span><span class="o">=</span><span class="mi">3</span><span class="p">;</span>
+	<span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">emp</span> <span class="n">sort</span> <span class="k">by</span> <span class="n">empno</span> <span class="k">asc</span><span class="p">;</span>
+	<span class="k">insert</span> <span class="n">overwrite</span> <span class="k">local</span> <span class="n">directory</span> <span class="s1">'/opt/datas/sortby_res'</span> <span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">emp</span> <span class="n">sort</span> <span class="k">by</span> <span class="n">empno</span> <span class="k">asc</span><span class="p">;</span>
+<span class="c1">-- distribute by 分区，类似mapreduce中partitioner，对数据分区，</span>
+	<span class="err">通常结合</span><span class="n">sort</span> <span class="k">by</span><span class="err">使用</span>
+	<span class="k">insert</span> <span class="n">overwrite</span> <span class="k">local</span> <span class="n">directory</span> <span class="s1">'/opt/datas/distby_res'</span> <span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">emp</span>
+	<span class="n">distribute</span> <span class="k">by</span> <span class="n">deptno</span> <span class="n">sort</span> <span class="k">by</span> <span class="n">empno</span> <span class="k">asc</span><span class="p">;</span>
+<span class="c1">-- cluster by 当distribute by的字段和sort by的字段相同时就可以用cluster by代替</span>
+	<span class="k">insert</span> <span class="n">overwrite</span> <span class="k">local</span> <span class="n">directory</span> <span class="s1">'/opt/datas/clusterby_res'</span> <span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">emp</span>
+	<span class="k">cluster</span> <span class="k">by</span> <span class="n">empno</span> <span class="k">asc</span><span class="p">;</span>
+</code></pre></div></div>
+
+<h4 id="获取表的信息">获取表的信息</h4>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">-- 获取基本信息</span>
+<span class="k">desc</span> <span class="n">student</span><span class="p">;</span>
+<span class="c1">-- 获取详细信息</span>
+<span class="k">desc</span> <span class="n">formatted</span> <span class="n">student</span>
+</code></pre></div></div>
+
+<h4 id="数据导入">数据导入</h4>
+<h5 id="将文件信息导入">将文件信息导入</h5>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code># 将本地数据信息载入数据表
+load data local inpath '/data/student.txt' into table db_hive.student;
+# 将HDFS数据载入数据表
+load data inpath '/student.txt' into table db_hive.student;
+</code></pre></div></div>
+<h5 id="将表中信息筛筛选导入">将表中信息筛筛选导入</h5>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>hive&gt; insert into table test
+    &gt; partition (age='25')
+    &gt; select id, name, tel
+    &gt; from wyp;
+</code></pre></div></div>
+
+<h4 id="数据导出">数据导出</h4>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>	# 1.常见导出insert overwrite local directory '/opt/datas/test.txt' select * from emp;
+	# 2.定义格式
+insert overwrite local directory '/opt/datas/test1.txt' 
+ROW FORMAT DELIMITED FIELDS TERMINATED BY '\t' COLLECTION ITEMS TERMINATED BY '\n'
+select * from emp;
+	# 3.hive -e "select * from ..." &gt; /opt/datas/xx.txt
+	# 4.保存到HDFS上
+	insert overwrite directory '' 
+		ROW FORMAT DELIMITED FIELDS TERMINATED BY '\t' COLLECTION ITEMS TERMINATED BY '\n'
+		select * from emp_partition;
+	5.sqoop
+</code></pre></div></div>
+
+  <!-- 引入share模块 -->
+  
+  <div class="social-share-wrapper">
+    <div class="social-share"></div>
+  </div>
+
+
+<!-- share.js -->
+<script src="/assets/js/social-share.min.js"></script>
+<script>
+  socialShare('.social-share', {
+    sites: [
+      
+        'qq'
+        ,
+        
+      
+        'wechat'
+        ,
+        
+      
+        'weibo'
+        ,
+        
+      
+        'twitter'
+        ,
+        
+      
+        'facebook'
+        
+      
+    ],
+    wechatQrcodeTitle: "分享到微信朋友圈",
+    wechatQrcodeHelper: '期待在朋友圈见到这篇文章'
+  });
+</script>
+
+</div>
+
+<!-- 底部锚点 -->
+<a id="htmldown" name="htmldown"></a>
+<!-- 引入评论模块 -->
+
+
+
+
+
+
+<!-- 引入goto模块 -->
+<div class="bounceInRight animated go">
+  <a title="顶部切换页面" class="gototop" href="#htmlup" target="_self">
+    <div class="box" style="font-family:'ffad_matroregular';">
+        Top
+    </div>
+  </a>
+  <a title="底部有评论哦" class="gotobottom" href="#htmldown" target="_self">
+    <div class="box" style="font-family:'ffad_matroregular';">
+        Foot
+    </div>
+  </a>
+</div>
+
+<!-- 引入页面底部模块 -->
+<footer id="bottom">
+  <br>
+  <span>Zcy ©
+  
+  
+  2018
+  <br>
+  Powered by <a href="https://www.jekyll.com.cn/">Jekyll</a> | <a href="https://github.com/xukimseven/HardCandy-Jekyll">HardCandy-Jekyll</a></span>
+</footer>
+
+
+<!-- 引用wow.js的动画效果 -->
+<script src="/assets/js/wow.js"></script>
+<script>
+    var wow = new WOW({
+        boxClass: 'wow',
+        animateClass: 'animated',
+        // offset: 600,
+        mobile: true,
+        live: true
+    });
+    wow.init();
+</script>
+<!-- 页面刷新回到顶部 -->
+<script>
+    window.onbeforeunload = function(){
+        //刷新后页面自动回到顶部
+        document.documentElement.scrollTop = 0;  //ie下
+        document.body.scrollTop = 0;  //非ie
+    }
+</script>
+<script src="/assets/js/main.js"></script>
+</body>
+</html>
