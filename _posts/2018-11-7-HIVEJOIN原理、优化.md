@@ -93,7 +93,7 @@ LEFT SEMI JOIN my_order o ON u.uid = o.uid;
 >
 > 也就是将其中一张表分别放入每个Map端，这样就可以在Map端将两张表进行整合，但前提是能分别放入每个Map端的那张表必须足够小
 
-![img](http://datavalley.github.io/img/hive/join/map-join.png)
+![mark](http://p5is3c987.bkt.clouddn.com/space01/181107/aFmhh4aFbH.png?imageslim)
 
 上面就是Map Side Join的原理了，可以看出每个Mapper里面都会有一个Small Table Data，这样就可以在Map端完成两张表的Join
 
