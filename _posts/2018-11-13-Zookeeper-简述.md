@@ -73,11 +73,17 @@ ZooKeeper 将所有数据存储在内存中，数据模型是一棵树（Znode T
 
 在前面我们已经提到，Zookeeper 的每个 ZNode 上都会存储数据，对应于每个 ZNode，Zookeeper 都会为其维护一个叫作 Stat 的数据结构。
 
-Stat 中记录了这个 ZNode 的三个数据版本，分别是：
-
-- version（当前 ZNode 的版本）
-- cversion（当前 ZNode 子节点的版本）
-- aversion（当前 ZNode 的 ACL 版本）
+- cZxid：这是导致创建znode更改的事务ID。
+- mZxid：这是最后修改znode更改的事务ID。
+- pZxid：这是用于添加或删除子节点的znode更改的事务ID。
+- ctime：表示从1970-01-01T00:00:00Z开始以毫秒为单位的znode创建时间。
+- mtime：表示从1970-01-01T00:00:00Z开始以毫秒为单位的znode最近修改时间。
+- dataVersion：表示对该znode的数据所做的更改次数。
+- cversion：这表示对此znode的子节点进行的更改次数。
+- aclVersion：表示对此znode的ACL进行更改的次数。
+- ephemeralOwner：如果znode是ephemeral类型节点，则这是znode所有者的 session ID。 如果znode不是ephemeral节点，则该字段设置为零。
+- dataLength：这是znode数据字段的长度。
+- numChildren：这表示znode的子节点的数量。
 
 #### 2.5  Watcher
 
@@ -119,8 +125,55 @@ ZooKeeper 官方提供的架构图：
 
 - ZooKeeper 集群中的所有机器通过一个 Leader 选举过程来选定一台称为 “Leader” 的机器。
 - Leader 既可以为客户端提供写服务又能提供读服务。除了 Leader 外，Follower 和  Observer 都只能提供读服务。
-- 当Client向Follow、Observer写入数据时，写入操作会同步到Leader，Leader会将同步的信息分发到其他节点上
+- 当Client向Follow、Observer写入数据时，写入操作会同步到Leader，Leader会将同步的信息分发到其他节点上，当大多数节点写入完成后，会向Client返回响应
 - Follower 和 Observer 唯一的区别在于 Observer 机器不参与 Leader 的选举过程，也不参与写操作的“过半写成功”策略，因此 Observer 机器可以在不影响写性能的情况下提升集群的读性能。
+
+### 5.Shell命令
+
+- zkCli.sh / zookeeper-client 进入
+
+- help 查看帮助信息
+
+- ls /  查看 “/” 节点下的信息
+
+- ls2 / 查看 “/” 节点下的详细信息
+
+- create /hive  "[数据信息]"     创建节点
+
+- get  /bigdata  获取节点信息
+
+- create -e /bigdata "aaa" 创建临时节点（退出之后删除
+
+- 创建序号节点
+
+  - create  -s  /bigdata/Impala  "node1"
+  - create  -s  /bigdata/Impala  "node2"
+
+- set  /bigdata  "Flink" 修改节点信息
+
+- 监听
+
+  - get /bigdata  [watch] 当该节点值改变时，会得到响应
+  - ls  /bigdata  [watch]  当节信息改变时，会得到响应
+  - 注册一次，监听一次
+
+- delete  /bigdata/Hive    删除节点
+
+- rmr  /bigdata   递归删除
+
+- stat   /    查看状态
+
+
+###  6.  监听器原理
+
+![mark](http://p5is3c987.bkt.clouddn.com/space01/181113/aK1FCI8jeH.png?imageslim)
+
+1. main()线程启动
+2. 创建zookeeper-client，创建两个线程connect和listener
+3. 通过connect线程将注册信息发送给zookeeper
+4.  zookeeper的监听器将注册监听的时间添加到注册的监听事件列表     例如：get  /bigdata  watch  client
+5. zookeeper监听到有数据或路径的变化，就会发送消息到listener线程
+6. listener线程内部调用process()方法，即自己编写的对应措施
 
 *参看文章*
 
