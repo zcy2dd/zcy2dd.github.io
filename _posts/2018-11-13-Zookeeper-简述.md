@@ -5,7 +5,7 @@ date:   2018-11-13
 tags: Zookeeper
 color: 'rgb(188,143,143)'
 subtitle: 'Zookeeper概念，数据结构，角色'
-cover: 'http://p5is3c987.bkt.clouddn.com/space01/181113/27jdbi7K9m.png?imageslim'
+cover: 'https://blog-1253533258.cos.ap-shanghai.myqcloud.com/img/27jdbi7K9m.png?imageslim'
 ---
 
 
@@ -99,7 +99,7 @@ ZooKeeper 允许用户在指定节点上注册一些 Watcher，并且在一些�
 
 #### 3.1 数据模型
 
-![mark](http://p5is3c987.bkt.clouddn.com/space01/181113/7EdLJGGJlh.gif)
+![mark](https://blog-1253533258.cos.ap-shanghai.myqcloud.com/img/7EdLJGGJlh.gif)
 
 ZooKeeper 允许分布式进程通过共享的层次结构命名空间进行相互协调，这与标准文件系统类似。
 
@@ -117,11 +117,11 @@ ZooKeeper 允许分布式进程通过共享的层次结构命名空间进行相�
 
 ZooKeeper 官方提供的架构图：
 
-![](http://p5is3c987.bkt.clouddn.com/space01/181113/gE41kLbKBg.webp)
+![](https://blog-1253533258.cos.ap-shanghai.myqcloud.com/img/gE41kLbKBg.webp)
 
 ### 4. ZooKeeper 集群角色介绍
 
-![mark](http://p5is3c987.bkt.clouddn.com/space01/181113/27jdbi7K9m.png?imageslim)
+![mark](https://blog-1253533258.cos.ap-shanghai.myqcloud.com/img/27jdbi7K9m.png?imageslim)
 
 - ZooKeeper 集群中的所有机器通过一个 Leader 选举过程来选定一台称为 “Leader” 的机器。
 - Leader 既可以为客户端提供写服务又能提供读服务。除了 Leader 外，Follower 和  Observer 都只能提供读服务。
@@ -166,7 +166,7 @@ ZooKeeper 官方提供的架构图：
 
 ###  6.  监听器原理
 
-![mark](http://p5is3c987.bkt.clouddn.com/space01/181113/aK1FCI8jeH.png?imageslim)
+![mark](https://blog-1253533258.cos.ap-shanghai.myqcloud.com/img/aK1FCI8jeH.png?imageslim)
 
 1. main()线程启动
 2. 创建zookeeper-client，创建两个线程connect和listener

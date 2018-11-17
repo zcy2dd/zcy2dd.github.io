@@ -2,15 +2,15 @@
 layout: post
 title:  'HIVE:JOIN原理、优化'
 date:   2018-11-7
-tags: hive
+tags: Hive
 color: 'rgb(135,206,235)'
 subtitle: 'hive的一些join操作以及hivejoin操作的优化'
-cover: 'https://tech.meituan.com/img/hive/join.png'
+cover: 'https://blog-1253533258.cos.ap-shanghai.myqcloud.com/hive_join.png'
 ---
 
 ### 1. Join原理
 
-![](https://tech.meituan.com/img/hive/join.png)
+![](https://blog-1253533258.cos.ap-shanghai.myqcloud.com/hive_join.png)
 
 1. 有两个表User、Order如上，进行Join操作
 
@@ -93,7 +93,7 @@ LEFT SEMI JOIN my_order o ON u.uid = o.uid;
 >
 > 也就是将其中一张表分别放入每个Map端，这样就可以在Map端将两张表进行整合，但前提是能分别放入每个Map端的那张表必须足够小
 
-![mark](http://p5is3c987.bkt.clouddn.com/space01/181107/aFmhh4aFbH.png?imageslim)
+![mark](https://blog-1253533258.cos.ap-shanghai.myqcloud.com/img/aFmhh4aFbH.png?imageslim)
 
 上面就是Map Side Join的原理了，可以看出每个Mapper里面都会有一个Small Table Data，这样就可以在Map端完成两张表的Join
 
