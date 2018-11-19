@@ -171,7 +171,7 @@ ZooKeeper 官方提供的架构图：
 1. main()线程启动
 2. 创建zookeeper-client，创建两个线程connect和listener
 3. 通过connect线程将注册信息发送给zookeeper
-4.  zookeeper的监听器将注册监听的时间添加到注册的监听事件列表     例如：get  /bigdata  watch  client
+4.  zookeeper监听器将注册监听的事件添加到注册的监听事件列表     例如：get  /bigdata  watch  client
 5. zookeeper监听到有数据或路径的变化，就会发送消息到listener线程
 6. listener线程内部调用process()方法，即自己编写的对应措施
 
