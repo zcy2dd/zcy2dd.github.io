@@ -2,7 +2,7 @@
 layout: post
 title:  'Hive Update、Delete操作配置'
 date:   2018-11-13
-tags: Zookeeper 选举算法
+tags: Hadoop Zookeeper 选举算法
 color: 'rgb(220,20,60)'
 subtitle: 'Hive在默认情况下是没有办法进行update、delete的，在经过如下操作以后则可以进行以上操作'
 cover: 'https://blog-1253533258.cos.ap-shanghai.myqcloud.com/2018-12-13/hive-conf.png'

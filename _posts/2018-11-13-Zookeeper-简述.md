@@ -2,7 +2,7 @@
 layout: post
 title:  'Zookeeper 简述'
 date:   2018-11-13
-tags: Zookeeper
+tags: Hadoop Zookeeper
 color: 'rgb(188,143,143)'
 subtitle: 'Zookeeper概念，数据结构，角色'
 cover: 'https://blog-1253533258.cos.ap-shanghai.myqcloud.com/img/27jdbi7K9m.png?imageslim'
