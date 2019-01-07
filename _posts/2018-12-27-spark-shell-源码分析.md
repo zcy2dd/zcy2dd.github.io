@@ -1,8 +1,8 @@
 ---
 layout: post
-title:  'spark-shell 源码分析'
+title:  'spark源码分析————shell'
 date:   2018-12-27 21:58:14
-tags: Spark
+tags: Spark 源码分析
 color: 'rgb(255,165,0)'
 subtitle: 'spark-shell启动的过程源码分析'
 cover: 'https://blog-1253533258.cos.ap-shanghai.myqcloud.com/2018-12-27/spark-shell-processes%20.png'
