@@ -6,7 +6,7 @@ date:   2019-4-12 18:09:27
 tags: Unicode
 description: '介绍了码表发展历史，以及关系'
 color: 'blue'
-cover: 'https://blog-1253533258.cos.ap-shanghai.myqcloud.com/img/Ic0d2Cf3J2.jpg?imageslim'
+cover: 'https://raw.github.com/acmerfight/insight_python/master/images/code.png'
 ---
 
 *转自：https://github.com/acmerfight/insight_python/edit/master/Unicode_and_Character_Sets.md*
