@@ -1,0 +1,383 @@
+[33mcommit aeff716a679dbba146aaf8c319e4ad920bfee0dc[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: zcy <zcy2nn@qq.com>
+Date:   Thu Jul 4 14:55:01 2019 +0800
+
+    修改格式
+
+[33mcommit 5d78249408f706000a42a0cae7de699204338a70[m
+Author: zcy <zcy2nn@qq.com>
+Date:   Sat Jun 15 10:05:25 2019 +0800
+
+    linux命令使用
+
+[33mcommit 492ae2f84a7e72026607308cc5edae504a5617c9[m
+Author: zcy <zcy2nn@qq.com>
+Date:   Thu May 30 22:32:42 2019 +0800
+
+    spark streaming 自定义输出文件名
+
+[33mcommit f401b5408ec4aeed5d03becb323b395239e5392b[m
+Author: zcy <zcy2nn@qq.com>
+Date:   Sat Apr 13 21:04:19 2019 +0800
+
+    修改图片地址
+
+[33mcommit 57ec607ccfbacb21dc9407ca9e5d703954a66459[m
+Author: zcy <zcy2nn@qq.com>
+Date:   Sat Apr 13 21:03:17 2019 +0800
+
+    Unicode
+
+[33mcommit 4edd23bb9b708d2357570e3a22c9a8cf566f1a79[m
+Author: zcy <zcy2nn@qq.com>
+Date:   Tue Feb 26 22:23:36 2019 +0800
+
+    机器学习相关文章
+
+[33mcommit c0afb7b9ac1a84b1a6f57f63d9bc1f22e0c48d55[m
+Author: zcy <zcy2nn@qq.com>
+Date:   Thu Jan 31 21:09:55 2019 +0800
+
+    跟换封面
+
+[33mcommit 02b8925a61b50153d2736884fbd467a2fb6ae3f9[m
+Author: zcy <zcy2nn@qq.com>
+Date:   Thu Jan 31 20:59:57 2019 +0800
+
+    cdh所有步骤完成
+
+[33mcommit 9bdd233f80307ff5ab87c4c1b5334205ca9c0531[m
+Author: zcy <zcy2nn@qq.com>
+Date:   Thu Jan 31 15:20:36 2019 +0800
+
+    cdh install
+
+[33mcommit 338ef3bfc80cbadd761c6832de4490c6ed5f8abc[m
+Author: zcy <zcy2nn@qq.com>
+Date:   Thu Jan 31 13:05:26 2019 +0800
+
+    cdh install
+
+[33mcommit fa7e3191d3aadead75dc06cfed4231fd5b754702[m
+Author: zcy <zcy2nn@qq.com>
+Date:   Thu Jan 31 13:03:25 2019 +0800
+
+    cdh install
+
+[33mcommit cabc8bca3878c0fbca8c3169bb89b85f0dcef122[m
+Author: zcy <zcy2nn@qq.com>
+Date:   Sun Jan 27 17:24:45 2019 +0800
+
+    DAGSchedule源码分析
+
+[33mcommit 5a23b158d43d04c09ec846bc2a8b419dad289dc7[m
+Author: zcy <zcy2nn@qq.com>
+Date:   Mon Jan 7 19:00:00 2019 +0800
+
+    好像没改什么
+
+[33mcommit 397489596d154b90a61b5c07b9a835d5fa8186e4[m
+Author: zcy <zcy2nn@qq.com>
+Date:   Thu Dec 27 22:13:14 2018 +0800
+
+    spark-shell 源码分析
+
+[33mcommit db72c4895adcdea9640a1926f9f2447c4c055a8e[m
+Author: zcy <zcy2nn@qq.com>
+Date:   Thu Dec 27 00:31:38 2018 +0800
+
+    s
+
+[33mcommit 01b21216836feb1ffcefdf0cc963da3023f407cb[m
+Author: zcy <zcy2nn@qq.com>
+Date:   Wed Dec 26 23:35:59 2018 +0800
+
+    稍作修改
+
+[33mcommit 884b3de41ce401aebbe8cf237e5298a96225f93e[m
+Author: zcy <zcy2nn@qq.com>
+Date:   Wed Dec 26 23:24:49 2018 +0800
+
+    稍作修改
+
+[33mcommit 7002da5a49f65b60f8e71e644ca788b5a0d7332d[m
+Author: zcy <zcy2nn@qq.com>
+Date:   Wed Dec 26 23:21:25 2018 +0800
+
+    Spark 核心
+
+[33mcommit e34391c965af0526d5ff022ff6c5ea4946633dfe[m
+Author: zcy <zcy2nn@qq.com>
+Date:   Tue Dec 25 22:23:56 2018 +0800
+
+    Spark入门
+
+[33mcommit 6169fe20b4d4f7840fa6b88ff264f7da2adf4289[m
+Author: zcy <zcy2nn@qq.com>
+Date:   Thu Dec 20 23:16:46 2018 +0800
+
+    scala笔记
+
+[33mcommit 0f29b682c2b7946ad12b025fa049eb03f9f5fc65[m
+Author: zcy <zcy2nn@qq.com>
+Date:   Mon Dec 17 19:11:33 2018 +0800
+
+    锚点
+
+[33mcommit 956cf7678fd04035d1ca1d67b4fe6982cf1ca28b[m
+Author: zcy <zcy2nn@qq.com>
+Date:   Mon Dec 17 19:00:35 2018 +0800
+
+    hive 架构
+
+[33mcommit be8aceecd88992610253878abf132b68bad9243f[m
+Author: zcy <zcy2nn@qq.com>
+Date:   Thu Dec 13 19:08:25 2018 +0800
+
+    flume结构
+
+[33mcommit b27ccf3ef4dd9929e54431a4568c9d85e8ba439b[m
+Author: zcy <zcy2nn@qq.com>
+Date:   Thu Dec 13 13:11:40 2018 +0800
+
+    sqoop操作
+
+[33mcommit f8193b395adf8d379339cd8b77e04471a72b375d[m
+Author: zcy <zcy2nn@qq.com>
+Date:   Mon Nov 19 17:29:52 2018 +0800
+
+    修复小错误
+
+[33mcommit 27bb658347101c55d13d2930fd64b6184ef32e98[m
+Author: zcy <zcy2nn@qq.com>
+Date:   Mon Nov 19 15:49:10 2018 +0800
+
+    添加了些东西
+
+[33mcommit cf3405b458397ac0836b2f46967f76a55b62e254[m
+Author: zcy <zcy2nn@qq.com>
+Date:   Sat Nov 17 20:49:47 2018 +0800
+
+    修改图床
+
+[33mcommit 91082268fa00a73d586e9a1aba390696957ead8f[m
+Author: zcy <zcy2nn@qq.com>
+Date:   Wed Nov 14 23:43:27 2018 +0800
+
+    修改了一点点
+
+[33mcommit d626711fd0e5e06026aa3164887de73a7a039256[m
+Author: zcy <zcy2nn@qq.com>
+Date:   Wed Nov 14 22:42:38 2018 +0800
+
+    Hbase原理
+
+[33mcommit 4a80c8d55f743e78379d21135e55ffe736df72ae[m
+Author: zcy <zcy2nn@qq.com>
+Date:   Tue Nov 13 18:32:55 2018 +0800
+
+    zookeeper 选举过程，更新zookeeper简介中的相关信息
+
+[33mcommit d3b806dde2f633641d5075b7deabee7d790e21d8[m
+Author: zcy <zcy2nn@qq.com>
+Date:   Tue Nov 13 15:55:01 2018 +0800
+
+    Zookeeper简介
+
+[33mcommit f4b21e945dd1c56807a7a9531a361e65433fd800[m
+Author: zcy <zcy2nn@qq.com>
+Date:   Mon Nov 12 18:58:51 2018 +0800
+
+    Impala详解
+
+[33mcommit 1abf1e230df1bfecec62a905896ec79593926a76[m
+Author: zcy <zcy2nn@qq.com>
+Date:   Thu Nov 8 10:16:11 2018 +0800
+
+    yarn文章提交
+
+[33mcommit 0c9bea32fcfec12b6583893f5d6cf555a17a37f3[m
+Author: zcy <zcy2nn@qq.com>
+Date:   Wed Nov 7 17:32:13 2018 +0800
+
+    HDFS文章上传
+
+[33mcommit 267cd7e25e06b1968d41efa388b12ef88a22da09[m
+Author: zcy <zcy2nn@qq.com>
+Date:   Wed Nov 7 10:52:59 2018 +0800
+
+    修复图片
+
+[33mcommit 17add42cd8ead00876fa6e048575f928db238904[m
+Author: zcy <zcy2nn@qq.com>
+Date:   Wed Nov 7 10:45:48 2018 +0800
+
+    上传文章hive join 操作 原理
+
+[33mcommit 3b524fde336f76db7c91bda10791ac4cb785a2cf[m
+Author: zcy <zcy2nn@qq.com>
+Date:   Tue Nov 6 12:34:51 2018 +0800
+
+    添加文章
+
+[33mcommit b38428d91c2fa78cb1bb131546e053cbb49265d0[m
+Author: zcy <zcy2nn@qq.com>
+Date:   Tue Nov 6 11:42:26 2018 +0800
+
+    hive相关操作
+
+[33mcommit d8e15792a7d7a0615f0265a53bbfc19e405db0f7[m
+Author: zcy <zcy2nn@qq.com>
+Date:   Fri Oct 26 10:28:10 2018 +0800
+
+    修改文章错误
+
+[33mcommit 68ed794bae2454c074bd372ae9d6c03443c9c4c9[m
+Author: zcy <zcy2nn@qq.com>
+Date:   Fri Oct 26 00:26:35 2018 +0800
+
+    发布配置hadoop
+
+[33mcommit 5066ec0e0b6805c5099f77c72a5525d5c4d6253a[m
+Author: zcy <zcy2nn@qq.com>
+Date:   Fri Oct 26 00:07:50 2018 +0800
+
+    修改了相关信息
+
+[33mcommit 6623cfd5d54ef9cb4901a410f94d7855826d91de[m
+Author: zcy <zcy2nn@qq.com>
+Date:   Thu Oct 25 20:37:11 2018 +0800
+
+    修改了个人信息
+
+[33mcommit 97f1c74e856ebdb2f3b9ede08640849f2b7da3cd[m
+Author: zcy <zcy2nn@qq.com>
+Date:   Thu Oct 25 16:53:25 2018 +0800
+
+    hive
+
+[33mcommit 1c545407ab3533323e4d50daaa70a811c2901a1f[m
+Author: zcy2dd <39327876+zcy2dd@users.noreply.github.com>
+Date:   Wed Oct 24 09:56:04 2018 +0800
+
+    Update _config.yml
+
+[33mcommit a4847738db2568f008b557b458461ac982af5308[m
+Author: xSeven <xseven@xSevens-MacBook-Pro.local>
+Date:   Sat Sep 29 18:35:04 2018 +0800
+
+    修改markdown.css的相关配置，调整了文章页的行高与字体大小
+
+[33mcommit 5d136d9e0253569339fb77b21e95ad78cfcc67b4[m
+Author: xSeven <xseven@xSevens-MacBook-Pro.local>
+Date:   Fri Sep 28 17:33:21 2018 +0800
+
+    调整了标签页文章链接字体大小，页面宽度小于650px时，字体为14px
+
+[33mcommit 40f1091ffe5ec9008f1aea0d5d1d7218f7cbc820[m
+Author: xSeven <xseven@xSevens-MacBook-Pro.local>
+Date:   Fri Sep 28 17:19:24 2018 +0800
+
+    1.添加Codepen的社交媒体图标，并且修改了图标来源为线上链接 2.更新了Readme，增加了代码高亮的试例图
+
+[33mcommit 84beea6b9a11442a62dc02372ea3d2b38d13f793[m
+Author: xSeven <xseven@xSevens-MacBook-Pro.local>
+Date:   Fri Sep 28 16:16:40 2018 +0800
+
+    添加DankMono字体并将代码块字体修改为该字体，后期可能会追加config文件快速切换预设字体的方案
+
+[33mcommit 6dd6fb8bbd7503bb02abc6ab9e686ae7c0c0fc95[m
+Author: xSeven <xseven@xSevens-MacBook-Pro.local>
+Date:   Thu Sep 27 18:40:44 2018 +0800
+
+    添加雅黑Consolas字体并应用于代码块，代码块的字体大小修改为13px
+
+[33mcommit c5ad43711ceb039674f8e61797061af5e6276c66[m
+Author: xSeven <xseven@xSevens-MacBook-Pro.local>
+Date:   Fri Aug 31 11:23:34 2018 +0800
+
+    将谷歌字体网络来源修改为服务器本地的字体，解决国内网络环境字体加载导致页面卡顿问题
+
+[33mcommit dbe4e6d56aedc01305e88a5eb8af992d71d34587[m
+Author: 鸡哥 <xujinqi7@gmail.com>
+Date:   Sat Jun 16 20:11:11 2018 +0800
+
+    添加安卓chrome主题颜色
+
+[33mcommit a94212ab714c8a682e8aa0c8b7183d7e914df459[m
+Author: 鸡哥 <xujinqi7@gmail.com>
+Date:   Wed Jun 13 13:37:14 2018 +0800
+
+    删除无用代码
+
+[33mcommit ad71d7cd3cfa78a0a7187cb91905932230678d7f[m
+Author: 鸡哥 <xujinqi7@gmail.com>
+Date:   Tue Jun 12 19:47:46 2018 +0800
+
+    添加将网页在ios中变成webapp的meta
+
+[33mcommit 48e292b8d8ddaacf29241129fb882d0179f285c6[m
+Author: 鸡哥 <xujinqi7@gmail.com>
+Date:   Sat Jun 2 06:22:57 2018 +0800
+
+    修改nav的bug
+
+[33mcommit 758a3d07d083e83f5340c761105e24b4c9013c3b[m
+Author: 鸡哥 <xujinqi7@gmail.com>
+Date:   Thu May 31 12:34:00 2018 +0800
+
+    修改少量样式
+
+[33mcommit 7bdc4d009032ff22d7ba48b518026526d222a433[m
+Author: xukimseven <xujinqi7@gmail.com>
+Date:   Wed May 30 09:14:07 2018 +0800
+
+    修改部分图片
+
+[33mcommit 25ece30055c50add610a49ca761687efb593d7bd[m
+Author: xukimseven <xujinqi7@gmail.com>
+Date:   Wed May 30 09:07:04 2018 +0800
+
+    修改部分图片
+
+[33mcommit 6e01ffcfb5154476e8e76273c4a2c11235958c4e[m
+Author: xukimseven <xujinqi7@gmail.com>
+Date:   Wed May 30 08:48:06 2018 +0800
+
+    上传README.md_修改少量样式_添加默认文章页面顶部颜色
+
+[33mcommit 4a44c205c5f732d932aba129f4656489a364c41e[m
+Author: xukimseven <xujinqi7@gmail.com>
+Date:   Tue May 29 16:28:01 2018 +0800
+
+    修改少量样式
+
+[33mcommit 4d1fee801348c5fd2cbf5674ec3bba94e3f764a6[m
+Author: xukimseven <xujinqi7@gmail.com>
+Date:   Tue May 29 16:06:19 2018 +0800
+
+    修改少量样式
+
+[33mcommit 022a45aa59eef858e311581334b7389fb7b9103b[m
+Author: xukimseven <xujinqi7@gmail.com>
+Date:   Tue May 29 15:55:58 2018 +0800
+
+    添加开源许可证_MIT_License
+
+[33mcommit c1b3ba6b5c1101ac07177a4ceeb3463153faeaf6[m
+Author: xukimseven <xujinqi7@gmail.com>
+Date:   Mon May 28 21:17:05 2018 +0800
+
+    修改少量样式
+
+[33mcommit f8e80e54a889a164f505029d971cd6fad8668aa9[m
+Author: xukimseven <xujinqi7@gmail.com>
+Date:   Mon May 28 21:14:03 2018 +0800
+
+    修改少量样式
+
+[33mcommit 9b61ccc03b26c9123670232143e93cb7c7724fc1[m
+Author: xukimseven <xujinqi7@gmail.com>
+Date:   Mon May 28 20:17:08 2018 +0800
+
+    HardCandy-Jekyll_V_1.0_'水果硬糖'jekyll主题第一版本发布
