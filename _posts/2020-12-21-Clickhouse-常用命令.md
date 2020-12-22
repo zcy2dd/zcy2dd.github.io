@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  'Clickhouse 常用命令'
-date:  2020-1-8
+date:  2020-12-21
 tags: DB Clickhouse
 color: 'rgb(167,177,165)'
 subtitle: 'Clickhouse 常用命令'
